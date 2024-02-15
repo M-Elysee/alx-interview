@@ -4,7 +4,7 @@
 const request = require('request');
 let id = process.argv[2];
 
-if (!id) {
+if (!id or process.argv.length > 2) {
   process.exit(1);
 }
 
@@ -23,7 +23,7 @@ request({
 },
 function (error, response, body) {
   if (error) {
-    console.error(error);
+    console.log(error);
   } else if (response && response.statusCode === 200) {
     const characters = JSON.parse(body).characters;
     // console.log(characters);
@@ -39,7 +39,7 @@ function fetchCharacters (characters) {
     },
     function (error, response, body) {
       if (error) {
-        console.error(error);
+        console.log(error);
       } else if (response && response.statusCode === 200) {
         const name = JSON.parse(body).name;
         console.log(name);
