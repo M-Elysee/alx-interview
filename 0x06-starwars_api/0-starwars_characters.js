@@ -5,7 +5,6 @@ const request = require('request');
 let id = process.argv[2];
 
 if (!id) {
-  console.log('Usage: node 0-starwars_characters.js <id>');
   process.exit(1);
 }
 
@@ -15,7 +14,6 @@ try {
     throw new Error();
   }
 } catch (error) {
-  console.log('Please provide an interger id');
   process.exit(1);
 }
 
