@@ -2,15 +2,15 @@
 // a script that fetch and prints all characters of a Star Wars movie
 
 const request = require('request');
-let id = process.argv[2];
-
-if (!id or process.argv.length > 2) {
-  process.exit(1);
-}
+let id;
 
 try {
+  id = process.argv[2];
   id = parseInt(id);
   if (!Number.isInteger(id)) {
+    throw new Error();
+  }
+  if (!id) {
     throw new Error();
   }
 } catch (error) {
@@ -23,7 +23,7 @@ request({
 },
 function (error, response, body) {
   if (error) {
-    console.log(error);
+    console.error(error);
   } else if (response && response.statusCode === 200) {
     const characters = JSON.parse(body).characters;
     // console.log(characters);
@@ -39,7 +39,7 @@ function fetchCharacters (characters) {
     },
     function (error, response, body) {
       if (error) {
-        console.log(error);
+        console.error(error);
       } else if (response && response.statusCode === 200) {
         const name = JSON.parse(body).name;
         console.log(name);
