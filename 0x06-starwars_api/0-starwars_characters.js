@@ -14,15 +14,18 @@ if (process.argv.length > 2) {
       console.error(error);
     } else if (response && response.statusCode === 200) {
       const characters = JSON.parse(body).characters;
-      fetchCharacters(characters)
-        .catch(error => console.error(error));
+      fetchCharacters(characters);
     }
   });
 
   async function fetchCharacters (characters) {
     for (const character of characters) {
-      const name = await getCharacterName(character);
-      console.log(name);
+      try {
+        const name = await getCharacterName(character);
+        console.log(name);
+      } catch (error) {
+        console.errot(error);
+      }
     }
   }
 
