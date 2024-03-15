@@ -5,6 +5,8 @@
     - a player remove a number and all it's multiples
     - the player who ends up having no moves becomes the looser
 """
+
+
 def isWinner(x, nums):
     """
         - x is the number of rounds
